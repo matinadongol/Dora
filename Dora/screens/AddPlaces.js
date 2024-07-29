@@ -1,12 +1,11 @@
 import { Text } from "react-native";
-import PlacesList from "../components/Places/PlacesList";
+import PlaceForm from "../components/Places/PlaceForm";
 
 
 export default function AddPlaces(){
   return (
   <>
-    <Text>Hi</Text>
-    <PlacesList/>
+    <PlaceForm/>
   </>
   )
 }
