@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons"
 import { Colors } from "../../constants/Colors";
 
 
-export default function OutlinedButton({onPress, icon, children}){
+export default function OutlineButton({onPress, icon, children}){
   return (
     <Pressable style={({pressed}) => [styles.button, pressed && styles.pressed]} onPress={onPress}>
       <Ionicons style={styles.icon} name={icon} size={18} color={Colors.primary500}/>
