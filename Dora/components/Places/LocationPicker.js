@@ -3,10 +3,10 @@ import OutlineButton from "../UI/OutlineButton";
 import { Colors } from "../../constants/Colors";
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus} from "expo-location";
 import { useEffect, useState } from "react";
-import getMapPreview from "../../Util/Location";
+import {getMapPreview,  getAddress } from "../../Util/Location";
 import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
 
-export default function LocationPicker(){
+export default function LocationPicker({onPickLocation}){
   const navigation = useNavigation()
   const route = useRoute()
   const isFocused = useIsFocused()
@@ -22,7 +22,20 @@ export default function LocationPicker(){
       setPickedLocation(mapPickedLocation)
     }
   }, [route, isFocused])
-  
+
+  useEffect(() => {
+    async function handleLocation(){
+      if(pickedLocation){
+        const address = await getAddress(
+          pickedLocation.lat,
+          pickedLocation.lng
+        )
+        onPickLocation({...pickedLocation, address: address})
+      }
+    }
+    handleLocation()
+  }, [pickedLocation, onPickLocation])
+
   async function verifyPermission(){
     if(locationPermissionInformation.status === PermissionStatus.UNDETERMINED){
       const permissionResponse = await requestPermission()
