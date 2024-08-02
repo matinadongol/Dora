@@ -1,12 +1,17 @@
 import { Text } from "react-native";
 import PlaceForm from "../components/Places/PlaceForm";
-
+import { insertPlace } from "../Util/database";
 
 export default function AddPlaces({navigation}){
-  function createPlaceHandler(place){
-    navigation.navigate('AllPlaces', {
-      place: place
-    })
+  async function createPlaceHandler(place){
+    console.log("Creating place:", place)
+    try {
+      await insertPlace(place);
+      console.log("Place inserted successfully");
+      navigation.navigate('AllPlaces');
+    } catch (error) {
+      console.error("Error inserting place:", error);
+    }
   }
   return (
   <>

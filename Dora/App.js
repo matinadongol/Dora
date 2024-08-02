@@ -7,10 +7,31 @@ import AddPlaces from "./screens/AddPlaces";
 import IconButton from "./components/UI/IconButton";
 import { Colors } from "./constants/Colors";
 import Map from "./screens/Map";
+import { useEffect, useState } from "react";
+import { init } from "./Util/database";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [dbInitialized, setDbInitialized] = useState(false)
+  useEffect(() => {
+    async function prepare() {
+      try {
+        //await SplashScreen.preventAutoHideAsync()
+        await init()
+        setDbInitialized(true)
+      } catch (error) {
+        console.error('Database Initialization Error:', error)
+      } finally {
+        SplashScreen.hideAsync()
+      }
+    }
+    prepare()
+  }, [])
+  // if(!dbInitialized){
+  //   return null
+  // }
+
   return (
     <>
       <StatusBar style="auto" />

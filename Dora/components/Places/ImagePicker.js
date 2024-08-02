@@ -29,7 +29,7 @@ export default function ImagePicker({onTakeImage}){
       aspect: [16, 9],
       quality: 0.5
     })
-    console.log(image); 
+    //console.log(image)
     if (!image.canceled) {  
       setPickedImage(image.assets[0].uri);
       onTakeImage(image.assets[0].uri);
