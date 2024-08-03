@@ -4,10 +4,9 @@ import { insertPlace } from "../Util/database";
 
 export default function AddPlaces({navigation}){
   async function createPlaceHandler(place){
-    console.log("Creating place:", place)
+    //console.log("Creating place:", place)
     try {
       await insertPlace(place);
-      console.log("Place inserted successfully");
       navigation.navigate('AllPlaces');
     } catch (error) {
       console.error("Error inserting place:", error);

@@ -14,11 +14,6 @@ export default function AllPlaces({route}){
       setLoadedPlaces(places)
     }
     if (isFocused) {
-      //console.log('Route Params:', route.params); 
-      // if (route.params && route.params.place) {
-      //   //console.log('Place:', route.params.place); 
-      //   setLoadedPlaces(curPlaces => [...curPlaces, route.params.place]);
-      // }
       loadPlaces()
     }
   }, [isFocused])

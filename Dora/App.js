@@ -4,9 +4,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import AllPlaces from "./screens/AllPlaces";
 import AddPlaces from "./screens/AddPlaces";
+import PlaceDetails from "./screens/PlacesDetails";
+import Map from "./screens/Map";
 import IconButton from "./components/UI/IconButton";
 import { Colors } from "./constants/Colors";
-import Map from "./screens/Map";
 import { useEffect, useState } from "react";
 import { init } from "./Util/database";
 
@@ -23,7 +24,7 @@ export default function App() {
       } catch (error) {
         console.error('Database Initialization Error:', error)
       } finally {
-        SplashScreen.hideAsync()
+        //SplashScreen.hideAsync()
       }
     }
     prepare()
@@ -70,6 +71,13 @@ export default function App() {
             component={Map} 
             options={{
               title: "Map"
+            }}
+          />
+          <Stack.Screen 
+            name="PlaceDetails" 
+            component={PlaceDetails} 
+            options={{
+              title: "Loading place..."
             }}
           />
         </Stack.Navigator>
