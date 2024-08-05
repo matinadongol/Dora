@@ -91,7 +91,6 @@ export async function fetchPlaceDetails(id) {
       },
       dbPlace.id
     )
-    //console.log('Place Detail:', result)
     return place;
   } catch (error) {
     console.error('Fetch Error:', error);
